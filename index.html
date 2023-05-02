@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+  <title>Aeronautical Decision Making AID</title>
+  <link
+    rel="shortcut icon"
+    href="{{ url_for('static', filename='flying-airplane.gif') }}"
+  />
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+</head>
+
+<body>
+  <img src="{{ url_for('static', filename='flying-airplane.gif') }}" width="200" 
+  height="200" />
+  <h3>Aeronautical Decision Making Aid</h3>
+
+  <form action="/" method="post">
+    <input type="text" name="departure" placeholder="Enter your Departing Airport ICAO code" required /> 
+    <input type="text" name="destination" placeholder="Enter your Arriving Airport ICAO code" required /> 
+    <input type="text" name="alternate" placeholder="Enter your Alternate Airport ICAO code" required /> 
+    <input type="hidden" name="departure" value="{{ departure }}">
+    <input type="hidden" name="destination" value="{{ destination }}">
+    <input type="hidden" name="alternate" value="{{ alternate }}">
+    <input type="text" name="time" placeholder="Enter Total PIC Time" id="time" required>
+    <input type="text" name="ceiling" placeholder="Enter Personal Minimum Ceiling" id="ceiling" required>
+    <input type="text" name="winds" placeholder="Enter Personal Max Wind Velocity"  id="winds" required>
+    <input type="text" name="visibility" placeholder="Enter Personal Minimum Visiblity"  id="visibility" required>
+    <input type="text" name="flightrule" placeholder="Enter Flightrule (VFR/IFR)"  id="flightrule" required>
+    <input type="submit" name="form" value="Retrieve METARs and AI Sentiment" />
+  </form>
+  <br>
+  
+  {% if departure %}
+  <h1> Current METARs </h1>
+  <h2>Departure Airport</h2>
+  <div class="departure" style="text-align: center; width: 70%">{{ departure }} </div>
+  {% endif %}
+  <br>
+  {% if trans1 %}
+  <div class="trans1" style="text-align: center; border: 1px solid #3a10a3; padding: 10px; width: 50%">{{ trans1 }}</div>
+{% endif %}
+  <br><br>
+  {% if destination %}
+  <h2>Destination Airport</h2>
+  <div class="destination"style="text-align: center; width: 70%">{{ destination }}</div>
+  {% endif %}
+  <br>
+  {% if trans2 %}
+  <div class="trans2" style="text-align: center; border: 1px solid #3a10a3; padding: 10px; width: 50%">{{ trans2 }}</div>
+  {% endif %}
+  <br>
+  <br>
+  {% if alternate %}
+  <br>
+  <h2>Alternate Airport</h2>
+  <div class="alternate"style="text-align: center; width: 70%">{{ alternate }}</div>
+  {% endif %}
+  <br>
+  {% if trans3 %}
+  <div class="trans3" style="text-align: center; border: 1px solid #3a10a3; padding: 10px; width: 50%">{{ trans3 }}</div>
+  {% endif %}
+  <br>
+  <br>
+
+  {% if sentiment %}
+  <h3>AI Sentiment</h3>
+  <div class="sentiment"style="text-align: center; width: 70%">{{ sentiment }}</div>
+  {% endif %}
+  <h1>
+</body>
